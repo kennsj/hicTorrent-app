@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* outline: 1px solid rgba(255, 255, 255, 0.18); */
+    font-family: 'San Francisco';
+    color: white;
+    cursor: default;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/bg-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    margin: 0 auto;
+    -webkit-app-region: drag;
+    user-select: none;
+    overflow-y: scroll;
+}
+
+/* CSS for movie selection section */
+
+.wrapper {
+    margin: 0 auto;
+    visibility: hidden;
+}
+
+.content {
+    min-width: 866px;
+    max-width: 80%;
+    height: 80vh;
+    margin: 10vh auto;
+    /* margin: 0 auto; */
+    background: linear-gradient(to left top, rgba(0, 130, 124, 0.5), rgba(0, 84, 109, 0.5));
+    overflow: scroll;
+    border-radius: 10px;
+}
+
+/* Styling for movie card and info box */
+
+.card {
+    width: 740px;
+    height: 260px;
+    margin: 50px auto;
+    cursor: pointer;
+}
+
+.movie-info {
+    position: relative;
+    top: 150px;
+    margin: 0 auto;
+    width: 700px;
+    height: 90px;
+    cursor: pointer;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 15px;
+    color: #E37270;
+    cursor: pointer;
+}
+
+h1 {
+    font-family: 20px;
+    font-weight: 100;
+    margin: 0;
+    cursor: pointer;
+}
+
+.circle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-top: 5px;
+    border: 1px solid #E37270;
+    /* box-shadow: 0 1px 1px -1px rgba(200, 199, 204, .5); */
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+h6 {
+    margin-left: 2px;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+p {
+    margin-left: 5px;
+    display: inline-flex;
+    font-size: 15px;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+.file-size {
+    margin-top: 20px;
+    float: right;
+    font-size: 15px;
+    color: #E37270;
+    cursor: pointer;
+}
+
+/* Add movie images under here */
+
+.bunny {
+    background: url(../images/bunny.png) no-repeat;
+    background-size: contain;
+}
+
+.interstellar {
+    background: url(../images/interstellar.png) no-repeat;
+    background-size: contain;
+}
+
+.warcraft {
+    background: url(../images/warcraft.png) no-repeat;
+    background-size: contain;
+}
+
+.sintel {
+    background: url(../images/sintel.png) no-repeat;
+    background-size: contain;
+}
+
+.skyfall {
+    background: url(../images/skyfall.png) no-repeat;
+    background-size: contain;
+}
+
+.civil-war {
+    background: url(../images/civil-war.png) no-repeat;
+    background-size: contain;
+}
+
+a {
+    margin: 0 auto;
+    display: block;
+    width: 740px;
+    text-decoration: none;
+}
+
+/* CSS for video player section */
+
+.video-wrapper {
+    /* visibility: hidden; */
+}
+
+#video-output {
+    
+}
