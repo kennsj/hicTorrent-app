@@ -9,6 +9,7 @@ var path = require('path');
 var url = require('url');
 
 
+
 // Global reference of the window object
 var win;
 
@@ -25,7 +26,7 @@ function createWindow() {
 
 
     // Makes window un-scalable
-    //win.setResizable(false);
+    // win.setResizable(false);
 
     win.once('ready-to-show', function () {
         win.show()
@@ -43,7 +44,7 @@ function createWindow() {
 
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     // Emitted when the window is closed.
     win.on('closed', function () {
@@ -81,9 +82,6 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-var movies = document.querySelector('.movies-wrapper');
-var videoPlayer = document.querySelector('.video-wrapper');
 
 
 // Pre-added magnet linked with images. Click on them to start movie

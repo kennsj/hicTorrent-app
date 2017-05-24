@@ -9,6 +9,32 @@
 }
 
 html {
+    margin: 0 auto;
+    -webkit-app-region: drag;
+    user-select: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show {
+    transition: .8s;
+    transform: scale(1);
+}
+
+.hide {
+    transition: .8s;
+    transform: scale(0);
+}
+
+
+/* CSS for movie selection section */
+
+.movies-wrapper {
+    /* display: none; */
     width: 100vw;
     height: 100vh;
     background-image: url("../images/bg-image.jpg");
@@ -16,17 +42,8 @@ html {
     background-size: cover;
     background-position: bottom;
     margin: 0 auto;
-    -webkit-app-region: drag;
     user-select: none;
     overflow-y: scroll;
-}
-
-
-/* CSS for movie selection section */
-
-.wrapper {
-    /* margin: 0 auto; */
-    /* display: none; */
 }
 
 .content {
@@ -47,7 +64,7 @@ html {
     width: 740px;
     height: 260px;
     margin: 50px auto;
-    cursor: pointer;
+    transition: .8s;
 }
 
 .movie-info {
@@ -56,21 +73,18 @@ html {
     margin: 0 auto;
     width: 700px;
     height: 90px;
-    cursor: pointer;
 }
 
 h2 {
     text-transform: uppercase;
     font-size: 15px;
     color: #E37270;
-    cursor: pointer;
 }
 
 h1 {
     font-family: 20px;
     font-weight: 100;
     margin: 0;
-    cursor: pointer;
 }
 
 .circle {
@@ -83,7 +97,6 @@ h1 {
     border: 1px solid #E37270;
     /* box-shadow: 0 1px 1px -1px rgba(200, 199, 204, .5); */
     border-radius: 50%;
-    cursor: pointer;
 }
 
 h6 {
@@ -91,7 +104,6 @@ h6 {
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 2px;
-    cursor: pointer;
 }
 
 p {
@@ -99,7 +111,6 @@ p {
     display: inline-flex;
     font-size: 15px;
     font-weight: 100;
-    cursor: pointer;
 }
 
 .file-size {
@@ -107,7 +118,6 @@ p {
     float: right;
     font-size: 15px;
     color: #E37270;
-    cursor: pointer;
 }
 
 
@@ -154,14 +164,32 @@ a {
 /* CSS for video player section */
 
 .video-wrapper {
-    width: 1200px;
+    position: fixed;
     margin: 0 auto;
-    display: none;
+    top: 25vh;
+    width: 1000px;
+    height: 450px;
+    transform: scale(0);
+    transition: .8s;
+    z-index: 1;
+    /*width: 100vw;
+    height: 100vh;*/
+    background-image: url("../images/bg-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    user-select: none;
+    overflow-y: scroll;
 }
 
 #video-output {
-    width: 1280px;
-    height: 50vh    ;
+    height: 50vh;
     margin-top: 25vh;
-    background: linear-gradient(to left top, rgba(0, 130, 124, 0.5), rgba(0, 84, 109, 0.5));
+}
+
+video {
+    width: 1000px;
+    height: 450px;
+    margin: 0;
+    padding: 0;
 }
