@@ -2,7 +2,8 @@ var {
     app,
     BrowserWindow,
     Tray,
-    Menu
+    Menu,
+    ipcMain
 } = require('electron');
 
 var path = require('path');
@@ -44,7 +45,7 @@ function createWindow() {
 
 
     // Open the DevTools.
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 
     // Emitted when the window is closed.
     win.on('closed', function () {
@@ -80,8 +81,11 @@ app.on('activate', function () {
     }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+// ipc handler
+ipcMain.on("resize", (event, args) => {
+    
+    // let videoWidth = document.querySelector('video')
+    
+    win.setContentBounds({x:0, y:0, width:args.w, height: args.h}, true);
+})
 
-
-// Pre-added magnet linked with images. Click on them to start movie

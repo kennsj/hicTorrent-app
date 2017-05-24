@@ -21,13 +21,11 @@ body {
 }
 
 .show {
-    transition: .8s;
-    transform: scale(1);
+    display: flex;
 }
 
 .hide {
-    transition: .8s;
-    transform: scale(0);
+    display: none;
 }
 
 
@@ -164,17 +162,13 @@ a {
 /* CSS for video player section */
 
 .video-wrapper {
-    position: fixed;
     margin: 0 auto;
-    top: 25vh;
-    width: 1000px;
-    height: 450px;
-    transform: scale(0);
-    transition: .8s;
+    width: 100%;
+    height: 100%;
     z-index: 1;
     /*width: 100vw;
     height: 100vh;*/
-    background-image: url("../images/bg-image.jpg");
+    /* background-image: url("../images/bg-image.jpg"); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -183,13 +177,16 @@ a {
 }
 
 #video-output {
-    height: 50vh;
-    margin-top: 25vh;
+    width: auto;
+    height: auto;
 }
 
 video {
-    width: 1000px;
-    height: 450px;
+    position: relative;
+    background-color: black;
+    top: -90px;
+    width: 740px;
+    height: 260px;
     margin: 0;
     padding: 0;
 }

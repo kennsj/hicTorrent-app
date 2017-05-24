@@ -1,21 +1,35 @@
-var movies = document.querySelector('.movies-wrapper');
-var videoPlayer = document.querySelector('.video-wrapper');
-var card = document.querySelector('.card');
+var ipcRenderer = require('electron').ipcRenderer;
 
-card.addEventListener('click', ()=> {
-    movies.style.transition = '1s';
-    movies.style.transform = 'scale(0)';
-    // videoPlayer.style.transition = '.8s';
-    // videoPlayer.style.transform = 'scale(1)';
-})
+let movies = document.querySelector('.movies-wrapper');
+let videoPlayer = document.querySelector('.video-wrapper');
+let card = document.querySelector('.card');
 
-videoPlayer.addEventListener('click', ()=> {
-    videoPlayer.style.transform = 'scale(0)';
-    movies.style.transition = '.8s ease-out';
-    movies.style.transform = 'scale(1)';
-})
+// videoPlayer.classList.add('hide');
 
-/* card.addEventListener('click', () => {
+
+card.addEventListener('click', () => {
+
     movies.classList.add('hide');
-    videoPlayer.classList.add('show');
-}) */
+    videoPlayer.classList.remove('hide');
+
+    ipcRenderer.send("resize", {
+        w: 1280,
+        h: 550
+    });
+});
+
+// Asd
+
+videoPlayer.addEventListener('click', () => {
+
+    videoPlayer.classList.add('hide');
+    movies.classList.remove('hide');
+
+    ipcRenderer.send("resize", {
+        w: 1024,
+        h: 1000
+    });
+
+    // var videoWidth = document.querySelector('video').offsetWidth;
+
+});
