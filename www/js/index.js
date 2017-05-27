@@ -1,35 +1,49 @@
+// Load modules
 var ipcRenderer = require('electron').ipcRenderer;
-
-let movies = document.querySelector('.movies-wrapper');
-let videoPlayer = document.querySelector('.video-wrapper');
-let card = document.querySelector('.card');
-
-// videoPlayer.classList.add('hide');
+var WebTorrent = require('webtorrent');
 
 
-card.addEventListener('click', () => {
+// Create a Torrent client
+var webTorrent = new WebTorrent();
 
-    movies.classList.add('hide');
-    videoPlayer.classList.remove('hide');
+// Setup the menu
+var cardList = document.querySelectorAll('.card');
 
-    ipcRenderer.send("resize", {
-        w: 1280,
-        h: 550
+for (var card of cardList) {
+
+    card.addEventListener('mousedown', (event) => {
+
+        var magnet = card.getAttribute('ht-magnet');
+
+        playTorrent(magnet, card);
     });
-});
+}
 
-// Asd
 
-videoPlayer.addEventListener('click', () => {
 
-    videoPlayer.classList.add('hide');
-    movies.classList.remove('hide');
+function playTorrent(magnet, target) {
 
-    ipcRenderer.send("resize", {
-        w: 1024,
-        h: 1000
+    webTorrent.add(magnet, function (torrent) {
+
+        // Torrents can contain many files. Let's use the .mp4 file
+        var file = torrent.files.find(function (file) {
+            return file.name.endsWith('.mp4');
+        });
+
+        var dl = file.downloaded;
+        var mbDl = parseInt(Math.floor(Math.log(dl) / Math.log(1024)));
+
+        setInterval(function () {
+            console.log(mbDl + "mbit");
+        }, 1000)
+
+        setInterval(function ()  {
+            console.log(torrent.downloadSpeed)
+        }, 1000)
+
+        file.appendTo(target);
     });
+};
 
-    // var videoWidth = document.querySelector('video').offsetWidth;
 
-});
+

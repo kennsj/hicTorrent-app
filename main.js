@@ -10,7 +10,6 @@ var path = require('path');
 var url = require('url');
 
 
-
 // Global reference of the window object
 var win;
 
@@ -21,8 +20,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1000,
         height: 1024,
-        titleBarStyle: 'hidden',
-        frame: false
+        titleBarStyle: 'hidden'
     })
 
 
@@ -67,8 +65,8 @@ app.on('ready', createWindow);
 app.on('window-all-closed', function () {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    //if (process.platform !== 'darwin') {
-    if (appIcon) appIcon.destroy();
+    // if (process.platform !== 'darwin') {
+    // if (appIcon) appIcon.destroy();
     app.quit();
     // };
 });
