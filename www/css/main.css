@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     /* outline: 1px solid rgba(255, 255, 255, 0.18); */
-    font-family: 'San Francisco';
+    font-family: 'San Francisco', sans-serif;
     color: white;
     cursor: default;
 }
@@ -13,24 +13,18 @@
     height: 25px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.22);
+    overflow: hidden;
+    z-index: 1;
 }
 
 html {
-    margin: 0 auto;
     -webkit-app-region: drag;
+    margin: 0 auto;
     user-select: none;
 }
 
 body {
-
-}
-
-.show {
-    display: flex;
-}
-
-.hide {
-    display: none;
+    background: linear-gradient(to left top, #0D3C8B, #854136);
 }
 
 
@@ -40,7 +34,6 @@ body {
     /* display: none; */
     width: 100vw;
     height: 100vh;
-    background-image: url("../images/bg-image.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -50,24 +43,31 @@ body {
 }
 
 .content {
-    min-width: 866px;
-    max-width: 80%;
-    height: 80vh;
-    margin: 10vh auto;
+    width: 100%;
+    height: 100%;
+    /* margin: 10vh auto; */
     /* margin: 0 auto; */
-    background: linear-gradient(to left top, rgba(0, 130, 124, 0.5), rgba(0, 84, 109, 0.5));
+    /* background: #ffffff; */
     overflow: scroll;
-    border-radius: 10px;
 }
 
 
 /* Styling for movie card and info box */
 
 .card {
+    -webkit-app-region: no-drag;
+    position: relative;
     width: 740px;
     height: 260px;
     margin: 50px auto;
-    transition: .8s;
+    box-shadow: 0 27px 40px rgba(42, 42, 42, 0.46);
+    transition: .5s ease-in;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 8px 32px 45px rgba(42, 42, 42, 0.46);
+    transition: .5s ease-out;
 }
 
 .movie-info {
@@ -98,16 +98,16 @@ h1 {
     height: 32px;
     margin-top: 5px;
     border: 1px solid #E37270;
-    /* box-shadow: 0 1px 1px -1px rgba(200, 199, 204, .5); */
     border-radius: 50%;
     padding-top: 3px;
 }
 
 h6 {
+    margin-top: -2px;
     margin-left: 2px;
     font-size: 12px;
     font-weight: 300;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 p {
@@ -116,6 +116,8 @@ p {
     font-size: 15px;
     font-weight: 100;
 }
+
+.play-btn {}
 
 .file-size {
     margin-top: 20px;
@@ -157,6 +159,36 @@ p {
     background-size: contain;
 }
 
+.upload-card {
+    -webkit-app-region: no-drag;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 740px;
+    height: 260px;
+    margin: 50px auto;
+    box-shadow: 0 27px 40px rgba(42, 42, 42, 0.46);
+    transition: .5s ease-in;
+    border: 5px dashed rgba(255, 255, 255, 0.2);
+}
+
+.upload-card:hover {
+    transform: scale(1.02);
+    box-shadow: 8px 32px 45px rgba(42, 42, 42, 0.46);
+    transition: .5s ease-out;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 100;
+    size: 100%;
+    width: 700px;
+    word-break: break-all;
+    text-align: center;
+    user-select: text;
+}
+
 a {
     margin: 0 auto;
     display: block;
@@ -165,8 +197,7 @@ a {
 }
 
 
-/* CSS for video player section */
-
+/* CSS for video player and containing elements */
 
 video {
     -webkit-app-region: no-drag;
@@ -180,33 +211,23 @@ video {
     z-index: 1;
 }
 
-/* 
+video::-webkit-media-controls-panel {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .close {
-    background-image: url(../images/back-icon.png);
+    background-image: url(../images/close-btn.png);
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    width: 25px;
-    height: 25px;
+    right: 0;
+    width: 30px;
+    height: 30px;
     z-index: 2;
     margin: 20px;
-} */
-
-
-
-.close {
-    background-image: url(../images/back-icon.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    z-index: 2;
-    margin: 20px;
-    opacity: 0;
+    cursor: pointer;
 }
 
 .hidden {
     display: none;
 }
-

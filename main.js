@@ -18,8 +18,8 @@ function createWindow() {
     // Create the browser window.
 
     win = new BrowserWindow({
-        width: 1000,
-        height: 1024,
+        width: 880,
+        height: 1220,
         titleBarStyle: 'hidden'
     })
 
@@ -43,7 +43,7 @@ function createWindow() {
 
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     // Emitted when the window is closed.
     win.on('closed', function () {
@@ -81,9 +81,13 @@ app.on('activate', function () {
 
 // ipc handler
 ipcMain.on("resize", (event, args) => {
-    
-    // let videoWidth = document.querySelector('video')
-    
-    win.setContentBounds({x:0, y:0, width:args.w, height: args.h}, true);
-})
 
+    // let videoWidth = document.querySelector('video')
+
+    win.setContentBounds({
+        x: 0,
+        y: 0,
+        width: args.w,
+        height: args.h
+    }, true);
+})
