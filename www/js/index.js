@@ -4,41 +4,62 @@ var WebTorrent = require('webtorrent');
 var dragDrop = require('drag-drop');
 
 // Create a Torrent client
-var webTorrent = new WebTorrent();
+//var webTorrent = new WebTorrent();
 
 // Setup the menu
 var cardList = document.querySelectorAll('.card');
+var playBtn = document.querySelector('.play-btn');
 var close = document.querySelector('.close');
 
-const videoPlayer = document.querySelector('video');
 
+
+// Scripts
+
+
+
+// Runs a loop of the cards and gets an array
 for (let card of cardList) {
 
-    var cardClick = card.addEventListener('click', (event) => {
+    playBtn.addEventListener('click', (event) => {
 
-        console.log('Start torrent process')
-
-        // If video is active, return out of function
-        if (card.isActive) {
-            close.addEventListener('click', function ()  {
-                console.log('Close video player');
+        // If the player is visible, the closing button will appear
+        //if (card.isActive) {
+        //    return;
+        // }
+        /* else {
+            // Sets the display of close and the appended video of none
+            close.addEventListener('click', function () {
+                console.log('Close this shit and pause')
+                document.querySelector('video').pause();
+                close.style.display = 'none';
+                // document.querySelector('video').style.display = 'none';
             })
+        } */
 
-            return;
-        }
+        // card.isActive = true;
 
-        var video = document.querySelector('video');
-
-        card.isActive = true;
-
-
+        // Selects the custom magnet attribute and starts the playTorrent function
         var magnet = card.getAttribute('ht-magnet');
         playTorrent(magnet, card);
     });
 };
 
-function playTorrent(magnet, target) {
 
+
+/*
+function playerLoaded() {
+    
+    if(video === paused) {
+        resumeVideoPlaying(); //DERP
+    }
+}
+*/
+
+// Starts the function to convert a magnet to a .mp4 file and ready to stream directly
+function playTorrent(magnet, target) {
+    
+    var webTorrent = new WebTorrent();
+    
     webTorrent.add(magnet, function (torrent) {
 
         // Torrents can contain many files. Let's use the .mp4 file
@@ -46,57 +67,29 @@ function playTorrent(magnet, target) {
             return file.name.endsWith('.mp4');
         });
 
-        if (target.isActive) {
-            console.log('Close appears');
-            close.classList.toggle('hidden');
-        }
-
-        setInterval(function () {
-            var dlProgress = (torrent.downloaded / 1024);
-            var dlProgress = (dlProgress / 1024);
-            var dlProgress = dlProgress.toFixed(1);
-            console.log(dlProgress + ' megabyte is downloaded');
-        }, 1000);
-
-        console.log('Movie playing');
-
+        // Appends a file to the video player and sets the video player display to relative
         file.appendTo(target);
+        
+        console.log('Movie is playing');
+        
+        close.classList.toggle('hidden');
+        close.addEventListener('mousedown', () => {
+            var video = target.querySelector('video');
+            if(video != null) {
+                video.parentNode.removeChild(video);
+                close.classList.toggle('hidden');
+                console.log('Movie has stopped playing');
+            }
+        });
     });
 };
 
 
 
-close.addEventListener('click', function () {
-
-    console.log('Close this shit');
-
-})
-
-
 // Allow drag and drop function to the client
-var uploadCard = document.querySelector('.upload-card');
-
-// When user drops files on the browser, create a new torrent and start seeding it!
+// When a user drops files in the div, it creates a magnet URI and starts to seed it
 dragDrop('.upload-card', function (files) {
     webTorrent.seed(files, function (torrent) {
         document.querySelector('h3').innerHTML = "Here is your magnet link:" + '<br>' + '<br>' + torrent.magnetURI;
     })
 })
-
-
-/*
-
-// Add functions to pause and play video
-var videoPlayer = document.querySelector('video');
-
-function pauseVideo()  {
-    console.log('Video is paused');
-    videoPlayer.pause();
-}
-
-function playVideo()  {
-    videoPlayer.play();
-    console.log('Video is resumed');
-}
-
-*/
